@@ -1,15 +1,15 @@
 #!/bin/bash
 
-LOGS_DIR=${1:-"logs/cpu"}
+LOGS_DIR=${1:-"logs"}
 mkdir -p "$LOGS_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
-SESSION_FILE="$LOGS_DIR/cpu_stress_${TIMESTAMP}.log"
-TEMP_FILE="logs/temp/temp_${TIMESTAMP}.csv"
-POWER_FILE="logs/power/power_${TIMESTAMP}.csv"
-METRICS_FILE="logs/cpu/cpu_metrics_${TIMESTAMP}.csv"
+SESSION_FILE="$LOGS_DIR/cpu/cpu_stress_${TIMESTAMP}.log"
+TEMP_FILE="$LOGS_DIR/temp/temp_${TIMESTAMP}.csv"
+POWER_FILE="$LOGS_DIR/power/power_${TIMESTAMP}.csv"
+METRICS_FILE="$LOGS_DIR/cpu/cpu_metrics_${TIMESTAMP}.csv"
 STAGE_FILE="/tmp/current_stage_${TIMESTAMP}.txt"
 
-mkdir -p logs/temp logs/power logs/cpu
+mkdir -p $LOGS_DIR/temp $LOGS_DIR/power $LOGS_DIR/cpu
 
 echo "idle" > "$STAGE_FILE"
 
