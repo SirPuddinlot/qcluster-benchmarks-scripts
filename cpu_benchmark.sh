@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOGS_DIR="logs/cpu"
+LOGS_DIR=${1:-"logs/cpu"}
 mkdir -p "$LOGS_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
 SESSION_FILE="$LOGS_DIR/cpu_stress_${TIMESTAMP}.log"
@@ -38,9 +38,9 @@ echo "=== STAGE 3: All Cores + Memory ===" | tee -a "$SESSION_FILE"
 echo "stage3_all_cores_memory" > "$STAGE_FILE"
 stress-ng --cpu 0 --vm 4 --vm-bytes 70% --timeout 60s --metrics 2>&1 | tee -a "$SESSION_FILE"
 
-echo "=== STAGE 4: All Cores + Memory + IO ===" | tee -a "$SESSION_FILE"
-echo "stage4_all_cores_memory_io" > "$STAGE_FILE"
-stress-ng --cpu 0 --vm 4 --vm-bytes 70% --hdd 1 --timeout 60s --metrics 2>&1 | tee -a "$SESSION_FILE"
+#echo "=== STAGE 4: All Cores + Memory + IO ===" | tee -a "$SESSION_FILE"
+#echo "stage4_all_cores_memory_io" > "$STAGE_FILE"
+#stress-ng --cpu 0 --vm 4 --vm-bytes 70% --hdd 1 --timeout 60s --metrics 2>&1 | tee -a "$SESSION_FILE"
 
 echo "completed" > "$STAGE_FILE"
 echo "Completed: $(date)" | tee -a "$SESSION_FILE"
